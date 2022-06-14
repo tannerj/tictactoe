@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  rspec:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    command: ["bundle", "exec", "rspec"]
+  irb:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    command: ["bundle", "exec", "irb"]
+  app_runner:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    command: ["bundle", "exec", "bin/tic_tac_toe"]
