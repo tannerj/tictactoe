@@ -15,3 +15,8 @@ services:
     volumes:
       - .:/usr/src/app
     command: ["bundle", "exec", "bin/tic_tac_toe"]
+  app_console:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    command: ["bundle", "exec", "bin/console"]
