@@ -6,4 +6,5 @@ require_relative "tic_tac_toe/board"
 
 module TicTacToe
   class Error < StandardError; end
+  class BoardError < Error; end
 end
