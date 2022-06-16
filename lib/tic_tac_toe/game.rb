@@ -1,6 +1,6 @@
 module TicTacToe
   class Game
-    attr_reader :current_player, :turn_stack, :game_state
+    attr_reader :board, :turn_stack, :current_player, :game_state
     
     GAME_STATE_OPEN   = "open"
     GAME_STATE_CLOSED = "closed"
@@ -49,7 +49,7 @@ module TicTacToe
       SOLUTION_SETS.each do |set|
         solution_state = ""
         solution_state << @board.state[set[0]] << @board.state[set[1]] << @board.state[set[2]]
-        @game_state = GAME_STATE_CLOSED if solution_state = win_string
+        @game_state = GAME_STATE_CLOSED if solution_state == win_string
       end
     end
   end
