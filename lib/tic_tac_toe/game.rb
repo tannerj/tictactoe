@@ -4,6 +4,7 @@ module TicTacToe
     
     GAME_STATE_OPEN   = "open"
     GAME_STATE_CLOSED = "closed"
+    GAME_STATE_DRAW   = "draw"
     SOLUTION_SETS = [
       [:A1, :A2, :A3],
       [:B1, :B2, :B3],
@@ -45,11 +46,19 @@ module TicTacToe
     end
 
     def update_game_state()
-      win_string = @current_player * 3
-      SOLUTION_SETS.each do |set|
-        solution_state = ""
-        solution_state << @board.state[set[0]] << @board.state[set[1]] << @board.state[set[2]]
-        @game_state = GAME_STATE_CLOSED if solution_state == win_string
+
+      # Check for a drawn board
+      if @turn_stack.count == 9 && @game_state == GAME_STATE_OPEN
+        @game_state = GAME_STATE_DRAW
+      else
+
+        # Check for a winning board
+        win_string = @current_player * 3
+        SOLUTION_SETS.each do |set|
+          solution_state = ""
+          solution_state << @board.state[set[0]] << @board.state[set[1]] << @board.state[set[2]]
+          @game_state = GAME_STATE_CLOSED if solution_state == win_string
+        end
       end
     end
   end

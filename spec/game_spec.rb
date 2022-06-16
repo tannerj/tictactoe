@@ -36,4 +36,19 @@ RSpec.describe TicTacToe::Game do
 
     expect(game.game_state).to eq(TicTacToe::Game::GAME_STATE_CLOSED)
   end
+
+  it "detects a drawn board" do
+    subject.player_turn( cell: "A1" )
+    subject.player_turn( cell: "A2" )
+    subject.player_turn( cell: "A3" )
+    subject.player_turn( cell: "C3" )
+    subject.player_turn( cell: "B1" )
+    subject.player_turn( cell: "B2" )
+    subject.player_turn( cell: "B3" )
+    subject.player_turn( cell: "C1" )
+    subject.player_turn( cell: "C2" )
+
+    # Drawn game...
+    expect(subject.game_state).to eq(TicTacToe::Game::GAME_STATE_DRAW)
+  end
 end
