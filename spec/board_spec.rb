@@ -24,5 +24,12 @@ RSpec.describe TicTacToe::Board do
         raise_error(TicTacToe::BoardError, "Unauthorized value.")
       )
     end
+
+    it "rejects cells already occupied" do
+      subject.update_state( cell: "A1", value: "X" )
+      expect { subject.update_state( cell: "A1", value: "O" ) }.to(
+        raise_error(TicTacToe::BoardError, "Cell already Occupied.")
+      )
+    end
   end
 end

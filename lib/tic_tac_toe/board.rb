@@ -30,6 +30,7 @@ class Board
 def update_state(cell:, value:)
   raise TicTacToe::BoardError.new("Cell out of bounds.") if !@state.has_key? cell.to_sym
   raise TicTacToe::BoardError.new("Unauthorized value.") unless value.to_s.upcase == "X" || value.to_s.upcase == "O"
+  raise TicTacToe::BoardError.new("Cell already Occupied.") if @state[cell.to_sym] != " "
   @state[cell.to_sym] = value.upcase
 end
 
